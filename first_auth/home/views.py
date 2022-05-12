@@ -59,10 +59,20 @@ def loginUser(request):
                # A backend authenticated the credentials
         else:
                    # No backend authenticated the credentials
-                       return render(request,'login.html')
+                       return render(request,'login2.html')
 
-    return render(request,'login.html')
+    return render(request,'login2.html')
 
 def logoutUser(request):
     logout(request)
     return redirect('/login')
+
+def signupUser(request):
+   # if request.user.is_anonymous:
+    #    return redirect('/login')
+    return render(request,'signup.html')
+
+def login2(request):
+   # if request.user.is_anonymous:
+    #    return redirect('/login')
+    return render(request,'login.html')
