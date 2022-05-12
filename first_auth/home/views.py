@@ -68,6 +68,11 @@ def logoutUser(request):
     return redirect('/login')
 
 def signupUser(request):
+    if request.method=='POST':
+        name =request.POST.get('name')
+        email =request.POST.get('email')
+        password =request.POST.get('password')
+        user = User.objects.create_user(name, email, password)
    # if request.user.is_anonymous:
     #    return redirect('/login')
     return render(request,'signup.html')
