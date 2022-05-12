@@ -52,7 +52,8 @@ def loginUser(request):
         password=request.POST.get('password')
         print(1,2,username,password)
         user = authenticate(username=username, password=password)
-       
+        messages.success(request, ' Login successful    .')
+
         if user is not None:
             login(request,user)
             return redirect('/')
@@ -69,10 +70,26 @@ def logoutUser(request):
 
 def signupUser(request):
     if request.method=='POST':
-        name =request.POST.get('name')
+        fname =request.POST.get('fname')
+        lname =request.POST.get('lname')
+        username =request.POST.get('username')
         email =request.POST.get('email')
         password =request.POST.get('password')
-        user = User.objects.create_user(name, email, password)
+        user = User.objects.create_user(username, email, password)
+        user.first_name=fname
+        user.last_name=lname
+        user.save()
+        messages.success(request, 'Your account have been succesfully created.')
+        user1 = authenticate(username=username, password=password)
+       
+        if user1 is not None:
+            login(request,user1)
+            return redirect('/')
+               # A backend authenticated the credentials
+        else:
+                   # No backend authenticated the credentials
+                       return render(request,'login2.html')
+        return render(request,'login2.html')
    # if request.user.is_anonymous:
     #    return redirect('/login')
     return render(request,'signup.html')
