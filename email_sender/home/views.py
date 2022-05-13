@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib import messages
 from django.core.mail import send_mail
+from django.conf import settings
+ 
 
 # Create your views here.
 
@@ -15,8 +17,8 @@ def index(request):
         send_mail(
         subject,
         message,
-        email,
-        ['prithyani2002@gmail.com'],
+        settings.EMAIL_HOST_USER,
+        ['prithyanipd@rknec.edu'],
         )
    
         return render(request,"index.html",{'name':name})    
