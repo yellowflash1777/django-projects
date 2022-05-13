@@ -82,7 +82,7 @@ def signupUser(request):
         user.last_name=lname
         user.save()
         messages.success(request, 'Your account have been succesfully created.')
-       
+        send_mail('Welcome to Prashant\'s world',f'Hi {user.first_name}, thank you for registering in Prashant\'s Store .',settings.EMAIL_HOST_USER,[user.email],)
        # user1 = authenticate(username=username, password=password)
        
         if user is not None:
