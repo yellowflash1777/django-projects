@@ -234,6 +234,14 @@
   </head>
 
   <body>
+    
+    {% if name %}
+    <center>
+      <h2> Thanks {{name}}!</h2>
+      <p>We recived you enail and we will 
+        respond shortly...</p>
+    </center>
+    {% else %}
     <div class="contact-form-container">
       <div class="contact-us">
         <div class="contact-header">
@@ -281,7 +289,7 @@
         </h3>
       </div>
       <div class="contact-form">
-        <form method="post" action="/index">
+        <form method="post" action="/">
           {% csrf_token %}
           <input placeholder="Name" type="text" id="name" name="name"  />
           <input
@@ -292,7 +300,7 @@
           <input
             placeholder="Subject"
             type="text"
-            id="email" name="email"
+            id="subject" name="subject"
           />
           <textarea
             placeholder="Tell us about your project..."
@@ -309,5 +317,6 @@
       src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
     ></script>
     <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+  {% endif %}
   </body>
 </html>
