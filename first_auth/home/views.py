@@ -8,6 +8,8 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth import logout,login
+from django.conf import settings
+from django.core.mail import send_mail
 
 
 # Create your views here.
@@ -80,10 +82,11 @@ def signupUser(request):
         user.last_name=lname
         user.save()
         messages.success(request, 'Your account have been succesfully created.')
-        user1 = authenticate(username=username, password=password)
        
-        if user1 is not None:
-            login(request,user1)
+       # user1 = authenticate(username=username, password=password)
+       
+        if user is not None:
+            login(request,user)
             return redirect('/')
                # A backend authenticated the credentials
         else:
